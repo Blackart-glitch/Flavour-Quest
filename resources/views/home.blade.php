@@ -55,6 +55,7 @@
     <!-- Hero Section -->
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
+
             <h1 class="display-4 text-warning">Welcome to Flavour Quest</h1>
             <p class="lead text-warning">Discover delicious recipes for every occasion</p>
             <a class="btn btn-dark text-warning btn-lg" href="#" role="button">Get Started</a>
