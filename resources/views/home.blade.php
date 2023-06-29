@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
     <title>Flavour Quest</title>
     <style>
         /* Custom Styles */
@@ -53,7 +54,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid font-roboto">
         <div class="container">
 
             <h1 class="display-4 text-warning">Welcome to Flavour Quest</h1>
