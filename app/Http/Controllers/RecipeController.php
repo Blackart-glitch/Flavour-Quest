@@ -19,6 +19,33 @@ class RecipeController extends Controller
         $this->url = rtrim(env('SPOONACULAR_API_URL'), '/');
     }
 
+    public function home()
+    {
+        // Send a GET request to the API endpoint with the necessary parameters
+        $response = $this->client->request('GET', $this->url . '/recipes/random', [
+            'query' => [
+                'apiKey' => $this->apiKey,
+                'number' => 12,
+                // Add any other required parameters
+            ]
+        ]);
+
+        // Get the response body as JSON for recipes
+        $recipes = json_decode($response->getBody(), true);
+
+        /*         $response2 = $this->client->request('GET', $this->url . '/ingredients', [
+            'query' => [
+                'apiKey' => $this->apiKey,
+                'number' => 6,
+                // Add any other required parameters
+            ]
+        ]);
+
+        $ingredients = json_decode($response2->getBody(), true); */
+
+        // Process the data as needed
+        return view('home', ['recipes' => $recipes['recipes'] /* 'ingredients' => $ingredients */]);
+    }
     public function index()
     {
         // Send a GET request to the API endpoint with the necessary parameters

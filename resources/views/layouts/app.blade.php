@@ -96,6 +96,8 @@
             margin: 0;
         }
     </style>
+
+
 </head>
 
 <body>
@@ -116,10 +118,10 @@
                         <a class="nav-link" href="{{ route('getrecipe') }}">Recipes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ingredients</a>
+                        <a class="nav-link" href="#Top-Ingredients">Ingredients</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cooking Tips</a>
+                        <a class="nav-link" href="{{ route('cookingtips') }}">Cooking Tips</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
