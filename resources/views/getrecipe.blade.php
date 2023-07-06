@@ -157,7 +157,7 @@
                                                     {{ $recipe['creditsText'] ?? 'Spoonacular library' }}
                                                 </div>
                                                 <button type="button" class="btn btn-dark text-warning"
-                                                    data-bs-dismiss="modal">VIEW ALL</button>
+                                                    data-bs-dismiss="modal">DOWNLOAD RECIPE CARD</button>
                                             </div>
                                         </div>
                                     </div>
