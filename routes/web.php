@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
-Route::get('/getrecipe', function () {
-    return view('getrecipe');
-})->name('getrecipe');
-Route::get('/getrecipe', function () {
-    return view('getrecipe');
-})->name('getrecipe');
+
+Route::get('/getrecipe', [RecipeController::class, 'index'])->name('getrecipe');
+
+Route::post('/getrecipe', [RecipeController::class, 'recipedata'])->name('submitIngredients');
+
 Route::get('/cookingtips', function () {
     return view('cookingtips');
 })->name('cookingtips');
