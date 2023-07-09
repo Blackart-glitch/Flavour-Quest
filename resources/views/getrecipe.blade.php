@@ -42,14 +42,14 @@
         <div class="row">
             <div class="col-md-4 d-flex flex-column h-100">
                 <div class="card mb-3">
-                    <div class="card-header">Input Ingredients</div>
-                    <div class="card-body">
+                    <div class="card-header"><b>Input Ingredients</b> <span class="material-symbols-outlined">search</span>
+                    </div>
+                    <div class="card-body bg-warning text-dark">
                         <form name="personalizedrecipes" id="personalizedrecipes" method="POST"
                             action="{{ route('submitIngredients') }}">
                             @csrf
                             <div class="form-group">
-                                <label for="ingredients">Ingredients:</label>
-                                <textarea id="ingredients" name="ingredients" class="form-control" rows="4"
+                                <textarea id="ingredients" name="ingredients" class="form-control font-monospace" rows="4"
                                     placeholder="Enter ingredients here... E.g beans, bread, fish "></textarea>
                             </div>
                             <button type="submit" class="btn btn-dark text-warning">Submit</button>
@@ -57,8 +57,8 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">Explore</div>
-                    <div class="card-body">
+                    <div class="card-header fw-bold">Explore</div>
+                    <div class="card-body bg-warning">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -120,7 +120,7 @@
                         <div class="row" id="listofrecipes">
                             @foreach ($recipes as $index => $recipe)
                                 @php
-                                    $description = str_split($recipe['summary']) ?? 'There is no description';
+                                    $description = str_split($recipe['summary'] ?? 'There is no description');
                                     $description = implode('', array_slice($description, 0, 30));
                                 @endphp
                                 <div class="col-md-4">
@@ -132,7 +132,10 @@
                                             <h5 class="card-title">{{ $recipe['title'] }}</h5>
                                             <p class="card-text">{!! $description . '...Read more' !!}</p>
                                             <a href="#" class="btn btn-dark text-warning" data-toggle="collapse"
-                                                data-target="#recipeCollapse{{ $index }}">View Recipe</a>
+                                                data-target="#recipeCollapse{{ $index }}"><span
+                                                    class="material-symbols-outlined">
+                                                    arrow_outward
+                                                </span></a>
                                             <div id="recipeCollapse{{ $index }}" class="collapse">
                                                 <p>{{ $recipe['summary'] ?? 'there really is no description' }}</p>
                                             </div>
@@ -151,13 +154,60 @@
                                             </div>
                                             <div class="modal-body">
                                                 {!! $recipe['summary'] ?? 'This product does not have a summary' !!}
+
+                                                @if (!empty($recipe['missedIngredients'] ?? $recipe['extendedIngredients']))
+                                                    @php
+                                                        $recipeingredients = $recipe['missedIngredients'] ?? $recipe['extendedIngredients'];
+                                                    @endphp
+                                                    <div class="ingredients">
+                                                        <h5>Ingredients you must add</h5>
+                                                        <div id="carouselIngredients" class="carousel slide">
+                                                            <div class="carousel-inner">
+                                                                @foreach ($recipeingredients as $i => $ingredient)
+                                                                    <div
+                                                                        class="carousel-item {{ $i < 1 ? 'active' : '' }}">
+                                                                        <img src="{{ $ingredient['image'] ?? '/broken.png' }}"
+                                                                            class="d-block w-100"
+                                                                            alt="Image of a {{ $ingredient['name'] }}">
+                                                                        <div
+                                                                            class="carousel-caption bg-dark text-warning opacity-50 d-none d-md-block">
+                                                                            <h5>{{ $ingredient['name'] }}</h5>
+                                                                            <p>{{ $ingredient['original'] ?? 'No description to this' }}
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+                                                            <button class="carousel-control-prev" type="button"
+                                                                data-bs-target="#carouselIngredients"
+                                                                data-bs-slide="prev">
+                                                                <span class="carousel-control-prev-icon"
+                                                                    aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Previous</span>
+                                                            </button>
+                                                            <button class="carousel-control-next" type="button"
+                                                                data-bs-target="#carouselIngredients"
+                                                                data-bs-slide="next">
+                                                                <span class="carousel-control-next-icon"
+                                                                    aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Next</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <p>There's no missed ingredient.</p>
+                                                @endif
+
+
                                             </div>
+
                                             <div class="modal-footer">
                                                 <div class="text-muted">
                                                     {{ $recipe['creditsText'] ?? 'Spoonacular library' }}
                                                 </div>
                                                 <button type="button" class="btn btn-dark text-warning"
-                                                    data-bs-dismiss="modal">DOWNLOAD RECIPE CARD</button>
+                                                    data-bs-dismiss="modal">DOWNLOAD RECIPE
+                                                    CARD</button>
                                             </div>
                                         </div>
                                     </div>
@@ -171,28 +221,4 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#personalizedrecipes').submit(function(event) {
-                event.preventDefault();
-
-                var form = $(this);
-                var url = form.attr('action');
-                var formData = form.serialize();
-
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: formData,
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(xhr.responseText);
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

@@ -20,49 +20,53 @@
 
             @else
                 @php
-                    $description = str_split($recipe['summary']) ?? 'There is no description';
-                    $description = implode('', array_slice($description, 0, 30));
+                    $description = $recipe['summary'] ? substr($recipe['summary'], 0, 30) : 'No description available';
                 @endphp
                 <div class="col-md-4">
                     <div class="card featured-recipe-card">
                         <img class="card-img-top" src="{{ $recipe['image'] ?? '/IMG1.jfif' }}"
                             alt="{{ $recipe['title'] ?? 'Error' }}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $recipe['title'] ?? 'NO TITLE' }}</h5>
-                            <p class="card-text">{!! $description . '...READ MORE' ?? 'NO SUMMARY' !!}</p>
+                            <h5 class="card-title">{{ $recipe['title'] ?? 'No title' }}</h5>
+                            <p class="card-text">{!! $description . '... READ MORE' !!}</p>
                             <a href="#" class="btn btn-dark text-warning">View Recipe</a>
                         </div>
                     </div>
                 </div>
             @endif
         @endforeach
+
     </div>
 </section>
 
 <!-- What's New Section -->
 <section class="container mt-5">
     <h2 class="mb-4">What's New</h2>
-    <div class="row">
-        @foreach ($recipes as $index => $recipe)
-            @if ($index >= 6)
-                @php
-                    $description = str_split($recipe['summary']) ?? 'There is no description';
-                    $description = implode('', array_slice($description, 0, 30));
-                @endphp
-                <div class="col-md-4">
-                    <div class="card featured-recipe-card">
-                        <img class="card-img-top" src="{{ $recipe['image'] ?? '/IMG1.jfif' }}"
-                            alt="{{ $recipe['title'] ?? 'Error' }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $recipe['title'] ?? 'NO TITLE' }}</h5>
-                            <p class="card-text">{!! $description . '...READ MORE' ?? 'NO SUMMARY' !!}</p>
-                            <a href="#" class="btn btn-dark text-warning">View Recipe</a>
+    @if (!empty($recipes))
+        <div class="row">
+            @foreach ($recipes as $index => $recipe)
+                @if ($index < 6)
+                    @php
+                        $description = $recipe['summary'] ? substr($recipe['summary'], 0, 30) : 'No description available';
+                    @endphp
+                    <div class="col-md-4">
+                        <div class="card featured-recipe-card">
+                            <img class="card-img-top" src="{{ $recipe['image'] ?? '/IMG1.jfif' }}"
+                                alt="{{ $recipe['title'] ?? 'Error' }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $recipe['title'] ?? 'No title' }}</h5>
+                                <p class="card-text">{!! $description . '... READ MORE' !!}</p>
+                                <a href="#" class="btn btn-dark text-warning">View Recipe</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endif
-        @endforeach
-    </div>
+                @endif
+            @endforeach
+        </div>
+    @else
+        <p>No recipes available.</p>
+    @endif
+
 </section>
 
 <!-- Top Ingredients Section -->

@@ -26,25 +26,14 @@ class RecipeController extends Controller
             'query' => [
                 'apiKey' => $this->apiKey,
                 'number' => 12,
-                // Add any other required parameters
             ]
         ]);
 
         // Get the response body as JSON for recipes
         $recipes = json_decode($response->getBody(), true);
 
-        /*         $response2 = $this->client->request('GET', $this->url . '/ingredients', [
-            'query' => [
-                'apiKey' => $this->apiKey,
-                'number' => 6,
-                // Add any other required parameters
-            ]
-        ]);
-
-        $ingredients = json_decode($response2->getBody(), true); */
-
         // Process the data as needed
-        return view('home', ['recipes' => $recipes['recipes'] /* 'ingredients' => $ingredients */]);
+        return view('home', ['recipes' => $recipes['recipes']]);
     }
     public function index()
     {
@@ -53,13 +42,11 @@ class RecipeController extends Controller
             'query' => [
                 'apiKey' => $this->apiKey,
                 'number' => 20,
-                // Add any other required parameters
             ]
         ]);
 
         // Get the response body as JSON
         $data = json_decode($response->getBody(), true);
-        //dd($data);
         // Process the data as needed
         return view('getrecipe', ['recipes' => $data['recipes']]);
     }
@@ -98,16 +85,13 @@ class RecipeController extends Controller
         $response = $this->client->request('GET', $this->url . '/recipes/findByIngredients', [
             'query' => [
                 'apiKey' => $this->apiKey,
-                'number' => 20,
+                'number' => 6,
                 'ingredients' => $refinedIngredients,
-                // Add any other required parameters
             ]
         ]);
 
         // Get the response body as JSON
         $recipes = json_decode($response->getBody(), true);
-        //$data['recipes'] = $recipes;
-        //dd($data);
 
         return view('getrecipe', ['recipes' => $recipes]);
     }
