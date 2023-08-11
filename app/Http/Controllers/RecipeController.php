@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Collection;
 use function env;
 
 class RecipeController extends Controller
@@ -41,14 +42,15 @@ class RecipeController extends Controller
         $response = $this->client->request('GET', $this->url . '/recipes/random', [
             'query' => [
                 'apiKey' => $this->apiKey,
-                'number' => 20,
+                'number' => 18,
             ]
         ]);
 
         // Get the response body as JSON
-        $data = json_decode($response->getBody(), true);
-        // Process the data as needed
-        return view('getrecipe', ['recipes' => $data['recipes']]);
+        $recipes = json_decode($response->getBody(), true);
+        $recipes = $recipes['recipes'];
+
+        return view('getrecipe', ['recipes' => $recipes]);
     }
 
     public function recipedata(Request $request)
@@ -85,7 +87,7 @@ class RecipeController extends Controller
         $response = $this->client->request('GET', $this->url . '/recipes/findByIngredients', [
             'query' => [
                 'apiKey' => $this->apiKey,
-                'number' => 6,
+                'number' => 18,
                 'ingredients' => $refinedIngredients,
             ]
         ]);

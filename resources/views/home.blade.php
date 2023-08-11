@@ -1,5 +1,43 @@
 @extends('layouts.app')
 @section('content')
+    <style>
+        .get-started:hover {
+            background-color: orange;
+            color: rgb(16, 16, 16);
+        }
+
+        .jumbotron {
+            background-image: url('/top1.avif');
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .jumbotron h1 {
+            font-size: 48px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .jumbotron p {
+            font-size: 24px;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .jumbotron .btn {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #000;
+            border-color: #000;
+        }
+    </style>
     <!-- Hero Section -->
     <div class="jumbotron">
         <div class="container">

@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,200" />
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Include Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css">
 
+    <!-- Add these in the <head> section of your HTML -->
     <style>
         /* Custom Styles */
         .navbar-brand {
@@ -18,41 +21,9 @@
             font-weight: bold;
         }
 
-        .get-started:hover {
-            background-color: orange;
-            color: rgb(16, 16, 16);
-        }
-
-        .jumbotron {
-            background-image: url('/top1.avif');
-            background-size: cover;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .jumbotron h1 {
-            font-size: 48px;
-            font-weight: bold;
-            color: #fff;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .jumbotron p {
-            font-size: 24px;
-            color: #fff;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .jumbotron .btn {
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #000;
-            border-color: #000;
+        .nav-item :hover {
+            background-color: rgb(47, 46, 46);
+            color: #ffc107;
         }
 
         .featured-recipe-card {
@@ -128,7 +99,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown">
+                                Get started
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item nav-iten" href="{{ route('signin') }}">Sign In</a></li>
+                                <li><a class="dropdown-item nav-item" href="{{ route('signup') }}">Sign Up</a></li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
+
+
             </div>
         </div>
     </nav>
@@ -137,10 +121,13 @@
 
 
     <!-- Bootstrap and jQuery Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <!-- Include Bootstrap JS (optional, for dropdowns, modals, etc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include Bootstrap Icons (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.js"></script>
 </body>
 
 <!-- Footer -->
