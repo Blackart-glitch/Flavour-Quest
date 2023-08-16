@@ -32,10 +32,12 @@ jobs:
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
       - name: Update the API keys in the project environment
-        id: Update API keys
+        id: Update_API_keys
+        run: echo "Setting up project environment variables"
         env:
           SPOONACULAR_API_KEY: ${{ secrets.SPOONACULAR_API_KEY }}
           SPOONACULAR_API_URL: ${{ secrets.SPOONACULAR_URL }}
+
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
