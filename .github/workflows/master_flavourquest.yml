@@ -33,11 +33,9 @@ jobs:
 
       - name: Update the API keys in the project environment
         id: Update_API_keys
-        run: echo "Setting up project environment variables"
-        env:
-          SPOONACULAR_API_KEY: ${{ secrets.SPOONACULAR_API_KEY }}
-          SPOONACULAR_API_URL: ${{ secrets.SPOONACULAR_URL }}
-
+        run: |
+          echo "Setting up project environment variables"
+          echo "${{ secrets.ENV_FILE }}" >> .env
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
