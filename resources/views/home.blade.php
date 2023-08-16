@@ -7,7 +7,7 @@
         }
 
         .jumbotron {
-            background-image: url('/top1.avif');
+            background-image: url('/home.jumbotron.jpg');
             background-size: cover;
             height: 400px;
             display: flex;

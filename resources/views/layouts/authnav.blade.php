@@ -10,11 +10,32 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Include Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css">
+    <!-- Include Google material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     <!-- Add these in the <head> section of your HTML -->
     <style>
+        /* Styling for WebKit-based browsers (Chrome, Safari) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background-color: rgb(237, 188, 11);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgb(8, 8, 8);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        /* Styling for Firefox */
+        scrollbar-color: orange transparent;
+        /* Thumb Color Track Color */
+
+
         /* Custom Styles */
         .navbar-brand {
             font-size: 24px;
@@ -77,7 +98,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-warning navbar-light ">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">Flavour Quest</a>
+            <a class="navbar-brand fw-bold" href="{{ route('home') }}">Flavour Quest</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -85,22 +106,31 @@
             <div class="d-flex" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link" href="{{ route('home') }}"><span class="material-icons">
+                                house
+                            </span>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('getrecipe') }}">Search Recipes</a>
+                        <a class="nav-link " href="{{ route('getrecipe') }}"><span
+                                class="material-icons">search</span>Recipes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#Ingredients">Ingredients</a>
+                        <a class="nav-link" href="#Ingredients"><span class="material-icons">
+                                blender
+                            </span>Ingredients</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cookingtips') }}">Cooking Tips</a>
+                        <a class="nav-link" href="{{ route('cookingtips') }}"><span class="material-icons">
+                                tips_and_updates
+                            </span>Cooking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="#"><span class="material-icons">
+                                contact_support
+                            </span>Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">logout</a>
+                        <a class="nav-link" href="#"><span class="material-icons">logout</span>Logout</a>
                     </li>
                 </ul>
 
@@ -123,8 +153,10 @@
 </body>
 
 <!-- Footer -->
-<footer class="footer text-center text-light py-3 mt-5">
-    <p>&copy; 2023 Flavour Quest. All rights reserved.</p>
+<footer class="footer mt-5 text-center py-3 bg-body-tertiary">
+    <div class="container">
+        <p class="text-body-secondary">&copy; 2023 Flavour Quest. All rights reserved.</p>
+    </div>
 </footer>
 
 </html>

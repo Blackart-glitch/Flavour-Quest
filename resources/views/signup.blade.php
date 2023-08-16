@@ -37,19 +37,23 @@
                         </form>
                         <p class="mt-3">Already have an account? <a href="{{ route('signin') }}">Sign In</a></p>
                     </div>
-
                     <div class=" text-center">
                         <p>Or sign in with:</p>
-                        <a href="#" class="btn btn-primary me-2"><i class="bi bi-facebook"></i> Facebook</a>
-                        <a href="#" class="btn btn-danger me-2"><i class="bi bi-google"></i> Google</a>
-                        <a href="#" class="btn btn-info me-2"><i class="bi bi-twitter"></i> Twitter</a>
-                        <a href="#" class="btn btn-dark"><i class="bi bi-github"></i> GitHub</a>
+                        <a href="#" class="btn me-2"><img width="48"
+                                height="48"src="https://img.icons8.com/color/48/facebook-new.png"
+                                alt="facebook-new" /></a>
+                        <a href="#" class="btn me-2"><img width="48" height="48"
+                                src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo" /></a>
+                        <a href="#" class="btn me-2"><img width="50" height="50"
+                                src="https://img.icons8.com/ios-filled/50/twitterx.png" alt="twitterx" /></a>
+                        <a href="#" class="btn"><img width="50" height="50"
+                                src="https://img.icons8.com/ios-filled/50/github.png" alt="github" /></a>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-5 d-flex justify-content-end">
-                <h2 class="text-warning h2">Flavour</h2><br>
-                <h2 class="text-warning h2">Quest</h2>
+            <div class="col-xl-5 text-center mt-5">
+                <h1 class="display-4 text-warning fw-bold">Flavour</h1>
+                <h1 class="display-4 text-warning fw-bold">Quest</h1>
             </div>
         </div>
     </div>
