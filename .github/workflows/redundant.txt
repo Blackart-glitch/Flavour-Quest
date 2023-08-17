@@ -1,0 +1,35 @@
+      - name: cache package for node
+        id: node_package_json
+        uses: actions/cache@v3
+        with:
+          path: package-lock.json
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: check updates for node dependencies
+        if: steps.node-package-json.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Cache Node Modules
+        if: steps.node_package_json.cache-hit != 'true'
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: cache package for composer
+        id: composer_json
+        uses: actions/cache@v3
+        with:
+          path: package-lock.json
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: check updates for node dependencies
+        if: steps.composer_json.cache-hit != 'true'
+        run: npm install
+
+      - name: Cache Composer vendor modules
+        if: steps.composer_json.cache-hit != 'true'
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
