@@ -48,9 +48,10 @@
         </div>
     </div>
 
-    <!-- Featured Recipes section-->
-    <section class="container mt-5">
+    <!-- Featured Recipes section -->
+    <section class="mt-5">
         <h2 class="mb-4">Featured Recipes</h2>
+
         <div class="row">
             @foreach ($recipes as $index => $recipe)
                 @if ($index >= 6)
@@ -66,16 +67,16 @@
                             alt="{{ $recipe['title'] ?? 'Error' }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $recipe['title'] ?? 'No title' }}</h5>
-                            <p class="card-text">{!! $description . '... READ MORE' !!}</p>
+                            <p class="card-text">{!! $description !!} <a href="#">READ MORE</a></p>
                             <a href="#" class="btn btn-dark text-warning">View Recipe</a>
                         </div>
                     </div>
                 </div>
             @endif
         @endforeach
-
     </div>
 </section>
+
 
 <!-- What's New Section -->
 <section class="container mt-5">
@@ -255,4 +256,9 @@
         </div>
     </div>
 </section>
+
+{{-- End credits section  --}}
+
+<a target="_blank" href="https://icons8.com/icon/KgisVcJhnUAQ/light-on">Light On</a> icon by <a target="_blank"
+    href="https://icons8.com">Icons8</a>
 @endsection
