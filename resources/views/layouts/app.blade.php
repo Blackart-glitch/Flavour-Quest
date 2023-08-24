@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flavour Quest</title>
+    <link rel="icon" type="image/gif" href="icons8-light-on.gif">
+    <!-- Bootstrap and Google Fonts CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Include Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <!-- Add these in the <head> section of your HTML -->
     <style>
@@ -75,15 +77,16 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg bg-warning navbar-light ">
-        <div class="container">
-            <a class="navbar-brand fw-b" href="#">Flavour Quest</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar fixed-top navbar-expand-lg bg-warning mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Flavour Quest</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="d-flex" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">Home</a>
                     </li>
@@ -94,28 +97,41 @@
                         <a class="nav-link" href="#Top-Ingredients">Ingredients</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cookingtips') }}">Cooking Tips</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('getrecipe') }}">Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cookingtips') }}">Cooking Tips</a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <div class="dropdown">
-                            <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown">
-                                Get started
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-iten" href="{{ route('signin') }}">Sign In</a></li>
-                                <li><a class="dropdown-item nav-item" href="{{ route('signup') }}">Sign Up</a></li>
-                            </ul>
-                        </div>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Link
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item nav-iten" href="{{ route('signin') }}">Sign In</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item nav-item" href="{{ route('signup') }}">Sign Up</a></li>
+                        </ul>
                     </li>
                 </ul>
-
-
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
             </div>
         </div>
     </nav>
+
+
+
+
+
+
 
     @yield('content')
 
