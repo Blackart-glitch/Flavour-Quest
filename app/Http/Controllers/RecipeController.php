@@ -42,7 +42,7 @@ class RecipeController extends Controller
         $response = $this->client->request('GET', $this->url . '/recipes/random', [
             'query' => [
                 'apiKey' => $this->apiKey,
-                'number' => 18,
+                'number' => 9,
             ]
         ]);
 
@@ -87,7 +87,7 @@ class RecipeController extends Controller
         $response = $this->client->request('GET', $this->url . '/recipes/findByIngredients', [
             'query' => [
                 'apiKey' => $this->apiKey,
-                'number' => 18,
+                'number' => 9,
                 'ingredients' => $refinedIngredients,
             ]
         ]);
