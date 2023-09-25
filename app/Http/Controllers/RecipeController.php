@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
+
 use function env;
 
 class RecipeController extends Controller
@@ -12,6 +14,7 @@ class RecipeController extends Controller
     protected $client;
     protected $apiKey;
     protected $url;
+    protected $user;
 
     public function __construct()
     {
@@ -20,40 +23,91 @@ class RecipeController extends Controller
         $this->url = rtrim(env('SPOONACULAR_API_URL'), '/');
     }
 
-    public function home()
+    public function home(Request $request)
     {
-        // Send a GET request to the API endpoint with the necessary parameters
-        $response = $this->client->request('GET', $this->url . '/recipes/random', [
-            'query' => [
-                'apiKey' => $this->apiKey,
-                'number' => 12,
-            ]
-        ]);
+        $user_id = auth()->user()->profile;
+        dd($user_id);
+        try {
+            // Send a GET request to the API endpoint with the necessary parameters
+            $response = $this->client->request('GET', $this->url . '/recipes/random', [
+                'query' => [
+                    'apiKey' => $this->apiKey,
+                    'number' => 12,
+                ]
+            ]);
+        } catch (\Throwable $th) {
+            $response = null;
+        }
 
         // Get the response body as JSON for recipes
-        $recipes = json_decode($response->getBody(), true);
+        if ($response) {
+            $recipes = json_decode($response->getBody(), true);
+        }
 
         // Process the data as needed
-        return view('home', ['recipes' => $recipes['recipes']]);
+        return view('home', ['recipes' => $recipes['recipes'] ?? '']);
     }
+
+
+    public function savedrecipes()
+    {
+    }
+
+    public function newrecipes()
+    {
+    }
+
+    public function communityrecipes()
+    {
+    }
+
+    public function recentlyviewed()
+    {
+    }
+
+    public function favourites()
+    {
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function index()
     {
-        // Send a GET request to the API endpoint with the necessary parameters
-        $response = $this->client->request('GET', $this->url . '/recipes/random', [
-            'query' => [
-                'apiKey' => $this->apiKey,
-                'number' => 9,
-            ]
-        ]);
+        try {
+            // Send a GET request to the API endpoint with the necessary parameters
+            $response = $this->client->request('GET', $this->url . '/recipes/random', [
+                'query' => [
+                    'apiKey' => $this->apiKey,
+                    'number' => 9,
+                ]
+            ]);
 
-        // Get the response body as JSON
-        $recipes = json_decode($response->getBody(), true);
-        $recipes = $recipes['recipes'];
+            // Get the response body as JSON
+            $recipes = json_decode($response->getBody(), true);
+            $recipes = $recipes['recipes'];
+        } catch (\Throwable $th) {
+            $recipes = null;
+        }
 
         return view('getrecipe', ['recipes' => $recipes]);
     }
 
-    public function recipedata(Request $request)
+    /*     public function recipedata(Request $request)
     {
         // Retrieve the form data [ingredients] from the request
         $ingredients = $request->ingredients;
@@ -96,5 +150,5 @@ class RecipeController extends Controller
         $recipes = json_decode($response->getBody(), true);
 
         return view('getrecipe', ['recipes' => $recipes]);
-    }
+    } */
 }

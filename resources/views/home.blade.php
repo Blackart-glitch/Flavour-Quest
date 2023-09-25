@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 @section('content')
     <style>
         .get-started:hover {
@@ -38,42 +38,80 @@
             border-color: #000;
         }
     </style>
-    <!-- Hero Section -->
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-4 text-warning">Welcome to Flavour Quest</h1>
-            <p class="lead text-warning">Discover delicious recipes for every occasion</p>
-            <button class=" btn btn-dark text-warning btn-lg get-started" href="#" role="button">Get
-                Started</button>
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <img src="/home.jumbotron.jpg" class="d-block w-100" alt="Slide 1">
+                <div class="carousel-caption text-start ">
+                    <h1 class="display-4 text-warning fw-bolder">Welcome to Flavour Quest</h1>
+                    <p class="lead text-warning fw-bold">Discover delicious recipes for every occasion</p>
+                    <a class="btn btn-dark text-warning btn-lg get-started" href="{{ route('register') }}"
+                        role="button">Get Started</a>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <img src="/home.jumbotron.jpg" class="d-block w-100" alt="Slide 2">
+                <div class="carousel-caption text-end">
+                    <h1 class="display-4 text-warning fw-bolder">Explore Exciting Recipes</h1>
+                    <p class="lead text-warning fw-bold">Find unique and mouthwatering recipes to try at home</p>
+                    <a class="btn btn-dark text-warning btn-lg get-started" href="{{ route('register') }}"
+                        role="button">Get Started</a>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <img src="/home.jumbotron.jpg" class="d-block w-100" alt="Slide 3">
+                <div class="carousel-caption text-center">
+                    <h1 class="display-4 text-warning fw-bold">Join Our Culinary Community</h1>
+                    <p class="lead text-warning fw-bold">Connect with fellow food enthusiasts and share your recipes</p>
+                    <a class="btn btn-dark text-warning btn-lg get-started" href="{{ route('register') }}"
+                        role="button">Get Started</a>
+                </div>
+            </div>
         </div>
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
     </div>
 
+
     <!-- Featured Recipes section -->
-    <section class="mt-5">
+    <section class="container mt-5">
         <h2 class="mb-4">Featured Recipes</h2>
 
         <div class="row">
-            @foreach ($recipes as $index => $recipe)
-                @if ($index >= 6)
-                @break
+            @if (!empty($recipes))
+                @foreach ($recipes as $index => $recipe)
+                    @if ($index >= 6)
+                    @break
 
-            @else
-                @php
-                    $description = $recipe['summary'] ? substr($recipe['summary'], 0, 30) : 'No description available';
-                @endphp
-                <div class="col-md-4">
-                    <div class="card featured-recipe-card">
-                        <img class="card-img-top" src="{{ $recipe['image'] ?? '/IMG1.jfif' }}"
-                            alt="{{ $recipe['title'] ?? 'Error' }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $recipe['title'] ?? 'No title' }}</h5>
-                            <p class="card-text">{!! $description !!} <a href="#">READ MORE</a></p>
-                            <a href="#" class="btn btn-dark text-warning">View Recipe</a>
+                @else
+                    @php
+                        $description = $recipe['summary'] ? substr($recipe['summary'], 0, 30) : 'No description available';
+                    @endphp
+                    <div class="col-md-4">
+                        <div class="card featured-recipe-card">
+                            <img class="card-img-top" src="{{ $recipe['image'] ?? '/IMG1.jfif' }}"
+                                alt="{{ $recipe['title'] ?? 'Error' }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $recipe['title'] ?? 'No title' }}</h5>
+                                <p class="card-text">{!! $description !!} <a href="#">READ MORE</a></p>
+                                <a href="#" class="btn btn-dark text-warning">View Recipe</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endif
-        @endforeach
+                @endif
+            @endforeach
+        @else
+            <p>No featured recipes Available at this time</p>
+        @endif
     </div>
 </section>
 
@@ -103,7 +141,7 @@
             @endforeach
         </div>
     @else
-        <p>No recipes available.</p>
+        <p>No new recipes available at this time.</p>
     @endif
 
 </section>
@@ -251,7 +289,7 @@
                     </a>
                 </div>
                 <p>Sign up for our newsletter to receive the latest recipes, cooking tips, and exclusive offers.</p>
-                <a href="#signup" class="btn btn-dark btn-lg mt-4 get-started">Join Now</a>
+                <a href="{{ route('register') }}" class="btn btn-dark btn-lg mt-4 get-started">Join Now</a>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-@extends('layouts.authnav')
+@extends('layouts.app')
 @section('content')
     <div class="container-fluid px-3">
         <div class="row">

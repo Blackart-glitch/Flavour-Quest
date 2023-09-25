@@ -31,14 +31,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
 Route::post('/getrecipe', [RecipeController::class, 'recipedata'])->name('submitIngredients');
 
 Route::get('/cookingtips', function () {
     return view('cookingtips');
 })->name('cookingtips');
 
-Route::view('/signin', 'signin')->name('signin');
-Route::view('/signup', 'signup')->name('signup');
 Route::view('/welcome', 'welcome');
-Route::view('/dashboard', 'dashboard');
-Route::view('/passwordreset', 'passwordreset');
+Route::view('/forum', 'forumtest');
+Route::view('/forumcat', 'forumcat');

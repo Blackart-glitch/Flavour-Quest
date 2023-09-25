@@ -14,7 +14,7 @@
                 <div class="bg-white p-5">
                     <div class="">
                         <h2 class="">Sign In</h2>
-                        <form action="{{ route('signin') }}" method="POST">
+                        <form action="{{ route('login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email:</label>
@@ -33,7 +33,8 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Sign In</button>
                         </form>
-                        <p class="mt-3">Don't have an account? <a href="{{ route('signup') }}">Sign Up</a></p>
+                        <p class="mt-3">Don't have an account? <a href="{{ route('register') }}">Sign Up</a></p>
+                        <p class="mt-3"><a href="{{ route('password.request') }}">Forgot Password?</a></p>
                     </div>
                     <div class="text-center">
                         <p>Or sign in with:</p>

@@ -14,7 +14,7 @@
                 <div class="bg-white p-5">
                     <div class="">
                         <h2 class="">Sign Up</h2>
-                        <form action="{{ route('signup') }}" method="POST">
+                        <form action="{{ route('register') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name:</label>
@@ -47,7 +47,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Sign Up</button>
                         </form>
-                        <p class="mt-3">Already have an account? <a href="{{ route('signin') }}">Sign In</a></p>
+                        <p class="mt-3">Already have an account? <a href="{{ route('login') }}">Sign In</a></p>
                     </div>
                     <div class=" text-center">
                         <p>Or sign in with:</p>
